@@ -7,15 +7,16 @@
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
 
-        def helper(left, right):
-            if not left and not right:
+        def helper(a, b):
+            if not a and not b:
                 return True
-            
-            if not left or not right:
+            if not a or not b:
+                return False
+            if a.val != b.val:
                 return False
             
-            return (left.val == right.val and (helper(left.right, right.right)
-             and helper(left.left, right.left)))
+            
+            return helper(a.left, b.left) and helper(a.right, b.right)
         
         return helper(p, q)
         
