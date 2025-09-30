@@ -4,17 +4,30 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from collections import deque
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        result = []
-        def helper(root, level):
-            if root is None:
-                return []
+        if not root:
+            return []
 
-            if level == len(result):
-                result.append(root.val)
+        stack = deque([root])
+        res = []
 
-            helper(root.right, level + 1)
-            helper(root.left, level + 1)
-        helper(root, 0)
-        return result
+        while stack:
+            n = len(stack)
+
+            for x in range(n):
+                current = stack.pop()
+                if x == n - 1:
+                    res.append(current.val)
+                
+                if current.left:
+                    stack.appendleft(current.left)
+                if current.right:
+                    stack.appendleft(current.right)
+
+        return res
+
+
+
+        
