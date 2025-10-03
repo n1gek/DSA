@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        #using recursion, probably use a helper while we at it
+        
         def helper(mini,node, maxi):
             if node is None:
                 return True
@@ -16,5 +16,3 @@ class Solution:
             return helper(mini, node.left, node.val) and helper(node.val, node.right, maxi)
             
         return helper(float("-inf"),root, float("inf"))
-                
-        
