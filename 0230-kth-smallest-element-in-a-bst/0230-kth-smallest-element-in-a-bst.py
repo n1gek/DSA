@@ -1,4 +1,3 @@
-from collections import deque
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -7,17 +6,41 @@ from collections import deque
 #         self.right = right
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        # looking like we can use a bfs and sort the list 
-        stack = deque([root])
-        values = []
+
+        # use a stack and traverse to the leftmost node
+        # at the leftmost node, add it to the stack
+        # increement the counter
+        # pop the node on top
+        # add its children to the stack
+        # use inorder left = root - right traversal
+
+        stack = []
+        count = 0
+
+        def pushLeft(node):
+            curr = node
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+        pushLeft(root)
+        
+        
         while stack:
-            current = stack.popleft()
-            values.append(current.val)
+            node = stack.pop()
+            count += 1
+
+            if count == k:
+                return node.val
+            
+
+            if node.right:
+                curr = node.right
+                pushLeft(curr)
+
+            
+
+
+
+
+
         
-            if current.left:
-                stack.append(current.left)
-            if current.right:
-                stack.append(current.right)
-        
-        values.sort()
-        return values[k-1]
