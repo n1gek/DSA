@@ -10,6 +10,7 @@ class Solution:
 
             if curr_sum > 0:
                 curr_sum = 0
+        h=0
         
         currMax = 0
         max_sum = nums[0]
