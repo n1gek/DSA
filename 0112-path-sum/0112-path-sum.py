@@ -19,6 +19,6 @@ class Solution:
             left = helper(node.left, curr)
             right = helper(node.right, curr)
 
-            return left or right
+            return right or left
         
         return helper(root, 0)
