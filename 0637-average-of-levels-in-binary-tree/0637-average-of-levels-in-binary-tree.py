@@ -7,29 +7,28 @@
 from collections import deque
 class Solution:
     def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
-        if not root:
-            return []
-        
+
+        stack = deque([(root)])
         res = []
-        que = deque([root])
 
-        while que:
-            total = 0
-            n = len(que)
-            length = 0
+        while stack:
+            n = len(stack)
+            ll = []
 
-            for x in range(n):
-                current = que.pop()
-                total += current.val
-                length += 1
+            for _ in range(n):
+                curr= stack.popleft()
+                ll .append(curr.val)
 
-                if current.left:
-                    que.appendleft(current.left)
-                if current.right:
-                    que.appendleft(current.right)
-            
-            avg = total / length
-            res.append(avg)
+                if curr.left:
+                    stack.append((curr.left))
+                if curr.right:
+                    stack.append((curr.right))
+            res.append(sum(ll) / n)
         
         return res
+
+        
+
+
+
 
