@@ -10,7 +10,7 @@ class Solution:
         def helper(node, curr):
             if not node:
                 return False
-
+            
             curr += node.val
 
             if curr == targetSum and not node.left and not node.right:
@@ -19,6 +19,10 @@ class Solution:
             left = helper(node.left, curr)
             right = helper(node.right, curr)
 
-            return right or left
+            return left or right
         
         return helper(root, 0)
+
+        
+        
+        
