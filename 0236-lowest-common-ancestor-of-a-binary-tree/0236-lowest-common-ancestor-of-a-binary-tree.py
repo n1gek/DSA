@@ -8,23 +8,22 @@
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
 
-        def helper(current):
-            if not current:
+        def helper(node):
+            if not node:
                 return None
             
-            if p.val == current.val or q.val == current.val:
-                return current 
+            if p.val == node.val or q.val == node.val:
+                return node
             
-            left = helper(current.left)
-            right = helper(current.right)
+            left = helper(node.left)
+            right = helper(node.right)
 
             if left and right:
-                return current # they are on different subtrees
+                return node
             
             return left or right
         
         return helper(root)
-
 
 
 
