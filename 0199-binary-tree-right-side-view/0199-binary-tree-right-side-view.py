@@ -16,18 +16,18 @@ class Solution:
         while stack:
             n = len(stack)
 
-            for x in range(n):
-                current = stack.pop()
-                if x == n - 1:
-                    res.append(current.val)
+            for i in range(n):
+                curr = stack.popleft()
+                if i == n -1:
+                    res.append(curr.val)
                 
-                if current.left:
-                    stack.appendleft(current.left)
-                if current.right:
-                    stack.appendleft(current.right)
-
+                if curr.left:
+                    stack.append(curr.left)
+                if curr.right:
+                    stack.append(curr.right)
+        
         return res
 
 
 
-        
+    
