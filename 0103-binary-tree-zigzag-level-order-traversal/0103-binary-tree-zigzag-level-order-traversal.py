@@ -9,35 +9,41 @@ class Solution:
     def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root:
             return []
-        
-        que = deque([root])
-        res = []
-        leftToRight = True
 
-        while que:
-            n = len(que)
+        stack = deque([root])
+        res = []
+        left = True
+
+        while stack:
             level = []
 
-            for i in range(n):
-                if leftToRight:
-                    current = que.pop()
-                    level.append(current.val)
+            for i in range(len(stack)):
+                if left:
+                    curr = stack.pop()
+                    level.append(curr.val)
 
-                    if current.left:
-                        que.appendleft(current.left)
-                    if current.right:
-                        que.appendleft(current.right)
-                
+                    if curr.left:
+                        stack.appendleft(curr.left)
+                    if curr.right:
+                        stack.appendleft(curr.right)
+                    
                 else:
-                    current = que.popleft()
-                    level.append(current.val)
+                    curr = stack.popleft()
+                    level.append(curr.val)
 
-                    if current.right:
-                        que.append(current.right)
-                    if current.left:
-                        que.append(current.left)
+                    if curr.right:
+                        stack.append(curr.right)
+                    if curr.left:
+                        stack.append(curr.left)
 
+
+        
+
+            left = not left #true
+            print(level)
             res.append(level)
-            leftToRight = not leftToRight
+
         
         return res
+        
+
